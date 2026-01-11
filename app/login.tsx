@@ -1,3 +1,4 @@
+import useAuthStore from "@/store/auth.store";
 import React, { useState } from "react";
 import {
   Alert,
@@ -9,12 +10,15 @@ import {
 } from "react-native";
 
 const login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("test");
+  const [password, setPassword] = useState("test");
+  const { logIn } = useAuthStore();
+
   const handlePress = () => {
     if (username.trim() === "" || password.trim() === "") {
       Alert.alert("Error", "Both fields required");
     }
+    logIn();
     console.log(username, password, "pressed");
   };
   return (

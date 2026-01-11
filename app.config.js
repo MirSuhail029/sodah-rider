@@ -27,6 +27,11 @@ module.exports = {
       },
       package: "com.mirsuhail029.sodahrider",
     },
+    ios: {
+      config: {
+        usesNonExemptEncryption: false,
+      },
+    },
     web: {
       output: "static",
       favicon: "./assets/images/favicon.png",
@@ -52,6 +57,7 @@ module.exports = {
             "Allow $(PRODUCT_NAME) to use your location.",
         },
       ],
+      "expo-secure-store",
     ],
     experiments: {
       typedRoutes: true,
