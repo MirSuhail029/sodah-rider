@@ -1,8 +1,12 @@
 import MapViewDirections from "@/components/MapViewDirections";
+import * as Location from "expo-location";
+import { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
 export default function Index() {
+  const [status, requestPermission] = Location.useForegroundPermissions();
+
   const sourceCoords = {
     latitude: 34.032929,
     longitude: 74.782578,
@@ -12,6 +16,13 @@ export default function Index() {
     latitude: 34.070682,
     longitude: 74.786562,
   };
+
+  useEffect(() => {
+    requestPermission();
+  }, []);
+
+  if (!status?.granted) return;
+
   return (
     <View style={StyleSheet.absoluteFill}>
       <MapView provider={PROVIDER_GOOGLE} style={{ flex: 1 }} showsUserLocation>
